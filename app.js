@@ -1,5 +1,8 @@
 ﻿const yearEl = document.getElementById("year");
 const authSection = document.getElementById("auth");
+const topbar = document.getElementById("topo");
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.querySelectorAll(".nav a");
 const themeSelect = document.getElementById("theme-select");
 const authTabs = document.querySelectorAll(".auth-tab");
 const authPanels = document.querySelectorAll(".auth-panel");
@@ -50,6 +53,20 @@ function showAuthPanel(panelName = "login") {
     tab.classList.toggle("is-active", isActive);
     tab.setAttribute("aria-selected", String(isActive));
   });
+}
+
+function closeMobileMenu() {
+  if (!topbar || !menuToggle) return;
+  topbar.classList.remove("menu-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Abrir menu");
+}
+
+function toggleMobileMenu() {
+  if (!topbar || !menuToggle) return;
+  const open = topbar.classList.toggle("menu-open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
 }
 
 function setMessage(message, isError = false) {
@@ -145,6 +162,22 @@ if (authTabs.length) {
     });
   });
 }
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", toggleMobileMenu);
+}
+
+if (navLinks.length) {
+  navLinks.forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
+  });
+}
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 760) {
+    closeMobileMenu();
+  }
+});
 
 if (registerForm) {
   registerForm.addEventListener("submit", async (event) => {
@@ -288,4 +321,3 @@ if (logoutButton) {
 
 initTheme();
 checkSession();
-
