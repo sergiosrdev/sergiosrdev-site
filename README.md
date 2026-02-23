@@ -1,4 +1,4 @@
-﻿# SérgioSRDev Site (Full Stack)
+﻿# Sérgio SR Dev Site (Full Stack)
 
 Portfólio com autenticação de usuários.
 
