@@ -1,0 +1,30 @@
+{
+  "name": "sergiosrdev-site",
+  "version": "1.0.0",
+  "description": "Portfólio Full Stack com autenticação de usuários",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "node",
+    "express",
+    "auth",
+    "sqlite"
+  ],
+  "author": "Sérgio Rodrigues",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

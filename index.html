@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -28,8 +28,16 @@
         <a href="#skills">Skills</a>
         <a href="#experiencia">Experiência</a>
         <a href="#projetos">Portfólio</a>
+        <a href="#auth">Login</a>
         <a href="#contato">Contato</a>
       </nav>
+      <div class="theme-switcher">
+        <label for="theme-select">Tema</label>
+        <select id="theme-select" aria-label="Selecionar tema do site">
+          <option value="light">Claro</option>
+          <option value="dark">Escuro</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -45,7 +53,7 @@
           </p>
           <div class="hero-actions">
             <a href="assets/cv.pdf" class="btn primary" target="_blank" rel="noopener noreferrer">Download CV</a>
-            <a href="#contato" class="btn outline">Fale comigo</a>
+            <a href="#auth" class="btn outline">Entrar na área</a>
           </div>
           <div class="hero-details">
             <span>Full Stack • JavaScript / Node.js / React</span>
@@ -252,6 +260,103 @@
       </div>
     </section>
 
+    <section id="auth" class="section auth-section is-guest" aria-labelledby="auth-title">
+      <div class="container">
+        <h2 id="auth-title">Área de Usuário</h2>
+        <p class="section-subtitle">
+          Demo full stack com cadastro, verificação de e-mail, login e recuperação de senha.
+        </p>
+
+        <div class="auth-tabs guest-only" role="tablist" aria-label="Etapas de autenticação">
+          <button type="button" class="auth-tab is-active" data-auth-view="login">Login</button>
+          <button type="button" class="auth-tab" data-auth-view="register">Cadastro</button>
+          <button type="button" class="auth-tab" data-auth-view="verify">Verificação</button>
+          <button type="button" class="auth-tab" data-auth-view="reset-request">Recuperar senha</button>
+          <button type="button" class="auth-tab" data-auth-view="reset-password">Nova senha</button>
+        </div>
+
+        <p id="auth-status" class="auth-status" role="status" aria-live="polite">Carregando sessão...</p>
+
+        <div class="auth-grid">
+          <article class="card auth-card guest-only auth-panel" data-auth-panel="register" hidden>
+            <h3>Criar conta</h3>
+            <form id="register-form" class="auth-form" autocomplete="on">
+              <label for="register-name">Nome</label>
+              <input id="register-name" name="name" type="text" required minlength="2" placeholder="Seu nome" />
+
+              <label for="register-email">E-mail</label>
+              <input id="register-email" name="email" type="email" required placeholder="seuemail@dominio.com" />
+
+              <label for="register-password">Senha</label>
+              <input id="register-password" name="password" type="password" required minlength="6" placeholder="Mínimo 6 caracteres" />
+
+              <button class="btn primary" type="submit">Registrar</button>
+            </form>
+          </article>
+
+          <article class="card auth-card guest-only auth-panel" data-auth-panel="verify" hidden>
+            <h3>Verificar e-mail</h3>
+            <form id="verify-form" class="auth-form" autocomplete="on">
+              <label for="verify-email">E-mail cadastrado</label>
+              <input id="verify-email" name="email" type="email" required placeholder="seuemail@dominio.com" />
+
+              <label for="verify-token">Código de verificação</label>
+              <input id="verify-token" name="token" type="text" required placeholder="Ex.: A1B2C3" />
+
+              <button class="btn outline" type="submit">Confirmar e-mail</button>
+            </form>
+          </article>
+
+          <article class="card auth-card guest-only auth-panel" data-auth-panel="login">
+            <h3>Entrar</h3>
+            <form id="login-form" class="auth-form" autocomplete="on">
+              <label for="login-email">E-mail</label>
+              <input id="login-email" name="email" type="email" required placeholder="seuemail@dominio.com" />
+
+              <label for="login-password">Senha</label>
+              <input id="login-password" name="password" type="password" required placeholder="Sua senha" />
+
+              <button class="btn outline" type="submit">Login</button>
+            </form>
+          </article>
+
+          <article class="card auth-card guest-only auth-panel" data-auth-panel="reset-request" hidden>
+            <h3>Solicitar nova senha</h3>
+            <form id="reset-request-form" class="auth-form" autocomplete="on">
+              <label for="reset-request-email">E-mail</label>
+              <input id="reset-request-email" name="email" type="email" required placeholder="seuemail@dominio.com" />
+
+              <button class="btn outline" type="submit">Enviar código</button>
+            </form>
+          </article>
+
+          <article class="card auth-card guest-only auth-panel" data-auth-panel="reset-password" hidden>
+            <h3>Redefinir senha</h3>
+            <form id="reset-password-form" class="auth-form" autocomplete="on">
+              <label for="reset-email">E-mail</label>
+              <input id="reset-email" name="email" type="email" required placeholder="seuemail@dominio.com" />
+
+              <label for="reset-token">Código de redefinição</label>
+              <input id="reset-token" name="token" type="text" required placeholder="Ex.: D4E5F6" />
+
+              <label for="reset-new-password">Nova senha</label>
+              <input id="reset-new-password" name="newPassword" type="password" required minlength="6" placeholder="Mínimo 6 caracteres" />
+
+              <button class="btn primary" type="submit">Atualizar senha</button>
+            </form>
+          </article>
+
+          <article class="card auth-card user-card auth-only">
+            <h3>Usuário autenticado</h3>
+            <p class="user-name" id="auth-user-name"></p>
+            <p class="user-email" id="auth-user-email"></p>
+            <p class="user-note">Sua sessão está ativa neste navegador.</p>
+            <button id="logout-btn" class="btn outline" type="button">Sair</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="contato" class="section" aria-labelledby="contato-title">
       <div class="container section-inner two-columns">
         <div>
@@ -293,9 +398,7 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="app.js" defer></script>
 
   <script type="application/ld+json">
     {
